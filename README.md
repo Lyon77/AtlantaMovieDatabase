@@ -9,5 +9,5 @@ Rename the class to Info
 Fill out the information regarding your SQL database in there
 
 In the Command Line, Run:
-'javac Application.java'
-'java Application'
+'javac MovieApplication.java'
+'java MovieApplication'
