@@ -36,6 +36,8 @@ public class Registration {
         root.setAlignment(Pos.CENTER);
 
         // Define the Buttons
+        Text title = new Text("Registration Navigation");
+
         Button userButton = new Button("User Only");
         Button customerButton = new Button("Customer Only");
         Button managerButton = new Button("Manager Only");
@@ -58,7 +60,7 @@ public class Registration {
         });
 
         // Finialize Stage
-        root.getChildren().addAll(userButton, customerButton, managerButton, managerCustomerButton, backButton);
+        root.getChildren().addAll(title, userButton, customerButton, managerButton, managerCustomerButton, backButton);
 
         Scene scene = new Scene(root, 360, 480);
 

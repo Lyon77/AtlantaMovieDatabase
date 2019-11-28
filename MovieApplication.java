@@ -65,6 +65,8 @@ public class MovieApplication extends Application {
         root.setAlignment(Pos.CENTER);
 
         //Define the layout of the text fields and buttons
+        Text title = new Text("Atlanta Movie Login");
+
         HBox h1 = new HBox();
         h1.setAlignment(Pos.CENTER);
         Text usernameText = new Text("Username :  ");
@@ -88,6 +90,7 @@ public class MovieApplication extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println(username.getText() + " " + password.getText());
+                Functionality.adminFunctionalityScreen(stage);
             }
         });
 
@@ -99,7 +102,7 @@ public class MovieApplication extends Application {
         });
 
         //Finalize the stage
-        root.getChildren().addAll(h1, h2, h3);
+        root.getChildren().addAll(title, h1, h2, h3);
 
         Scene scene = new Scene(root, 360, 480);
 
