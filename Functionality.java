@@ -158,4 +158,123 @@ public class Functionality {
         stage.setScene(scene);
         stage.show();
     }
+
+    public static void managerCustomerFunctionalityScreen(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and
+        Text title = new Text("Manager-Customer Functionality");
+
+        HBox h1 = new HBox();
+        h1.setAlignment(Pos.CENTER);
+        Button theaterOverviewButton = new Button("Theater Overview");
+        Button exploreMovieButton = new Button("Explore Movie");
+        h1.getChildren().addAll(theaterOverviewButton, exploreMovieButton);
+
+        HBox h2 = new HBox();
+        h2.setAlignment(Pos.CENTER);
+        Button scheduleMovieButton = new Button("Schedule Movie");
+        Button exploreTheaterButton = new Button("Explore Theater");
+        h2.getChildren().addAll(scheduleMovieButton, exploreTheaterButton);
+
+        HBox h3 = new HBox();
+        h3.setAlignment(Pos.CENTER);
+        Button viewHistoryButton = new Button("View History");
+        Button visitHistoryButton = new Button("Visit History");
+        h3.getChildren().addAll(viewHistoryButton, visitHistoryButton);
+
+        Button backButton = new Button("Back");
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.loginScreen(stage);
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, h1, h2, h3, backButton);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void customerFunctionalityScreen(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and
+        Text title = new Text("Customer Functionality");
+
+        HBox h1 = new HBox();
+        h1.setAlignment(Pos.CENTER);
+        Button exploreMovieButton = new Button("Explore Movie");
+        Button viewHistoryButton = new Button("View History");
+        h1.getChildren().addAll(exploreMovieButton, viewHistoryButton);
+
+        HBox h2 = new HBox();
+        h2.setAlignment(Pos.CENTER);
+        Button exploreTheaterButton = new Button("Explore Theater");
+        Button visitHistoryButton = new Button("Visit History");
+        h2.getChildren().addAll(exploreTheaterButton, visitHistoryButton);
+
+        Button backButton = new Button("Back");
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.loginScreen(stage);
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, h1, h2, backButton);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void userFunctionalityScreen(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and
+        Text title = new Text("User Functionality");
+
+        Button exploreTheaterButton = new Button("Explore Theater");
+
+        Button visitHistoryButton = new Button("Visit History");
+
+        Button backButton = new Button("Back");
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.loginScreen(stage);
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, exploreTheaterButton, visitHistoryButton, backButton);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

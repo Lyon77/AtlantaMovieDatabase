@@ -92,7 +92,7 @@ public class MovieApplication extends Application {
                 System.out.println(username.getText() + " " + password.getText());
 
                 // Choose Functionality based on user type in SQL Database
-                Functionality.managerFunctionalityScreen(stage);
+                Functionality.userFunctionalityScreen(stage);
             }
         });
 
