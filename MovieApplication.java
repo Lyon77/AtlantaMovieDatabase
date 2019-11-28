@@ -56,7 +56,7 @@ public class MovieApplication extends Application {
         loginScreen(stage);
     }
 
-    private void loginScreen(Stage stage) {
+    public static void loginScreen(Stage stage) {
         VBox root = new VBox();
         root.setPadding(new Insets(10));
         root.setSpacing(10);
@@ -88,7 +88,7 @@ public class MovieApplication extends Application {
         registerButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                registerNavigation(stage);
+                Registration.registerNavigation(stage);
             }
         });
 
@@ -99,56 +99,5 @@ public class MovieApplication extends Application {
 
         stage.setScene(scene);
         stage.show();
-    }
-
-    private void registerNavigation(Stage stage) {
-        VBox root = new VBox();
-        root.setPadding(new Insets(10));
-        root.setSpacing(10);
-
-        // Define the Buttons
-        Button userButton = new Button("User Only");
-        Button customerButton = new Button("Customer Only");
-        Button managerButton = new Button("Manager Only");
-        Button managerCustomerButton = new Button("Manager-Customer Only");
-        Button backButton = new Button("Back");
-
-        // Set on Click Buttons
-        userButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showInputTextDialog();
-            }
-        });
-
-        backButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                loginScreen(stage);
-            }
-        });
-
-        // Finialize Stage
-        root.getChildren().addAll(userButton, customerButton, managerButton, managerCustomerButton, backButton);
-
-        Scene scene = new Scene(root, 450, 250);
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    private void showInputTextDialog() {
-
-        TextInputDialog dialog = new TextInputDialog("Tran");
-
-        dialog.setTitle("Movie Application");
-        dialog.setHeaderText("Enter your name:");
-        dialog.setContentText("Name:");
-
-        Optional<String> result = dialog.showAndWait();
-
-        result.ifPresent(name -> {
-            System.out.println(name);
-        });
     }
 }
