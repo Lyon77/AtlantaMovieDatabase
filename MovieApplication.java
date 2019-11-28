@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
 
+import javafx.geometry.Pos;
+
 // Java
 import java.util.Optional;
 
@@ -60,19 +62,23 @@ public class MovieApplication extends Application {
         VBox root = new VBox();
         root.setPadding(new Insets(10));
         root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
 
         //Define the layout of the text fields and buttons
         HBox h1 = new HBox();
+        h1.setAlignment(Pos.CENTER);
         Text usernameText = new Text("Username :  ");
         TextField username = new TextField("Username");
         h1.getChildren().addAll(usernameText, username);
 
         HBox h2 = new HBox();
+        h2.setAlignment(Pos.CENTER);
         Text passwordText = new Text("Password :  ");
         TextField password = new TextField("Password");
         h2.getChildren().addAll(passwordText, password);
 
         HBox h3 = new HBox();
+        h3.setAlignment(Pos.CENTER);
         Button loginButton = new Button("Login");
         Button registerButton = new Button("Register");
         h3.getChildren().addAll(loginButton, registerButton);
@@ -95,7 +101,7 @@ public class MovieApplication extends Application {
         //Finalize the stage
         root.getChildren().addAll(h1, h2, h3);
 
-        Scene scene = new Scene(root, 450, 250);
+        Scene scene = new Scene(root, 360, 480);
 
         stage.setScene(scene);
         stage.show();

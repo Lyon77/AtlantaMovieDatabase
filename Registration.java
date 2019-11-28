@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
 
+import javafx.geometry.Pos;
+
 // Java
 import java.util.Optional;
 
@@ -31,6 +33,7 @@ public class Registration {
         VBox root = new VBox();
         root.setPadding(new Insets(10));
         root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
 
         // Define the Buttons
         Button userButton = new Button("User Only");
@@ -43,7 +46,7 @@ public class Registration {
         userButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Utils.showInputTextDialog();
+                Utils.showInputTextDialog("Name", "Input Name:");
             }
         });
 
@@ -57,7 +60,7 @@ public class Registration {
         // Finialize Stage
         root.getChildren().addAll(userButton, customerButton, managerButton, managerCustomerButton, backButton);
 
-        Scene scene = new Scene(root, 450, 250);
+        Scene scene = new Scene(root, 360, 480);
 
         stage.setScene(scene);
         stage.show();

@@ -27,13 +27,12 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class Utils {
-    public static void showInputTextDialog() {
-
-        TextInputDialog dialog = new TextInputDialog("Tran");
+    public static void showInputTextDialog(String title, String header) {
+        TextInputDialog dialog = new TextInputDialog(title);
 
         dialog.setTitle("Movie Application");
-        dialog.setHeaderText("Enter your name:");
-        dialog.setContentText("Name:");
+        dialog.setHeaderText(header);
+        dialog.setContentText(title + ":");
 
         Optional<String> result = dialog.showAndWait();
 
