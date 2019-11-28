@@ -90,7 +90,9 @@ public class MovieApplication extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println(username.getText() + " " + password.getText());
-                Functionality.adminFunctionalityScreen(stage);
+
+                // Choose Functionality based on user type in SQL Database
+                Functionality.managerFunctionalityScreen(stage);
             }
         });
 
