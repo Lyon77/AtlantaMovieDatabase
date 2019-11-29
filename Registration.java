@@ -55,7 +55,7 @@ public class Registration {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 

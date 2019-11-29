@@ -27,8 +27,11 @@ import javafx.geometry.Pos;
 
 // Java
 import java.util.Optional;
+import java.util.Stack;
 
 public class MovieApplication extends Application {
+
+    public static Stack<ComplexInterface> pastStage = new Stack();
 
     public static void main (String[] args) {
         try {
@@ -91,14 +94,16 @@ public class MovieApplication extends Application {
             public void handle(ActionEvent event) {
                 System.out.println(username.getText() + " " + password.getText());
 
+                pastStage.push(MovieApplication::loginScreen);
                 // Choose Functionality based on user type in SQL Database
-                Functionality.userFunctionalityScreen(stage);
+                Functionality.adminCustomerFunctionalityScreen(stage);
             }
         });
 
         registerButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                pastStage.push(MovieApplication::loginScreen);
                 Registration.registerNavigation(stage);
             }
         });
@@ -110,5 +115,10 @@ public class MovieApplication extends Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FunctionalInterface
+    public static interface ComplexInterface{
+        void activate(Stage stage);
     }
 }

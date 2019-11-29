@@ -40,11 +40,13 @@ public class Functionality {
 
         HBox h1 = new HBox();
         h1.setAlignment(Pos.CENTER);
+        h1.setSpacing(10);
         Button manageUserButton = new Button("Manage User");
         Button exploreTheaterButton = new Button("Explore Theater");
         h1.getChildren().addAll(manageUserButton, exploreTheaterButton);
 
         HBox h2 = new HBox();
+        h2.setSpacing(10);
         h2.setAlignment(Pos.CENTER);
         Button manageCompanyButton = new Button("Manage Company");
         Button visitHistoryButton = new Button("Visit History");
@@ -58,7 +60,7 @@ public class Functionality {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 
@@ -81,19 +83,22 @@ public class Functionality {
         Text title = new Text("Admin-Customer Functionality");
 
         HBox h1 = new HBox();
+        h1.setSpacing(10);
         h1.setAlignment(Pos.CENTER);
         Button manageUserButton = new Button("Manage User");
         Button exploreMovieButton = new Button("Explore Movie");
         h1.getChildren().addAll(manageUserButton, exploreMovieButton);
 
         HBox h2 = new HBox();
-        h1.setAlignment(Pos.CENTER);
+        h2.setAlignment(Pos.CENTER);
+        h2.setSpacing(10);
         Button manageCompanyButton = new Button("Manage Company");
         Button exploreTheaterButton = new Button("Explore Theater");
         h2.getChildren().addAll(manageCompanyButton, exploreTheaterButton);
 
         HBox h3 = new HBox();
         h3.setAlignment(Pos.CENTER);
+        h3.setSpacing(10);
         Button createMovieButton = new Button("Create Movie");
         Button viewHistoryButton = new Button("View History");
         h3.getChildren().addAll(createMovieButton, viewHistoryButton);
@@ -103,10 +108,26 @@ public class Functionality {
         Button backButton = new Button("Back");
 
         //Set on Click actions
+        manageUserButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::adminCustomerFunctionalityScreen);
+                Utils.manageUser(stage);
+            }
+        });
+
+        manageCompanyButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::adminCustomerFunctionalityScreen);
+                Utils.manageCompany(stage);
+            }
+        });
+
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 
@@ -129,6 +150,7 @@ public class Functionality {
         Text title = new Text("Manager-Only Functionality");
 
         HBox h1 = new HBox();
+        h1.setSpacing(10);
         h1.setAlignment(Pos.CENTER);
         Button theaterOverviewButton = new Button("Theater Overview");
         Button exploreTheaterButton = new Button("Explore Theater");
@@ -136,6 +158,7 @@ public class Functionality {
 
         HBox h2 = new HBox();
         h2.setAlignment(Pos.CENTER);
+        h2.setSpacing(10);
         Button scheduleMovieButton = new Button("Schedule Movie");
         Button visitHistoryButton = new Button("Visit History");
         h2.getChildren().addAll(scheduleMovieButton, visitHistoryButton);
@@ -146,7 +169,7 @@ public class Functionality {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 
@@ -169,6 +192,7 @@ public class Functionality {
         Text title = new Text("Manager-Customer Functionality");
 
         HBox h1 = new HBox();
+        h1.setSpacing(10);
         h1.setAlignment(Pos.CENTER);
         Button theaterOverviewButton = new Button("Theater Overview");
         Button exploreMovieButton = new Button("Explore Movie");
@@ -176,12 +200,14 @@ public class Functionality {
 
         HBox h2 = new HBox();
         h2.setAlignment(Pos.CENTER);
+        h2.setSpacing(10);
         Button scheduleMovieButton = new Button("Schedule Movie");
         Button exploreTheaterButton = new Button("Explore Theater");
         h2.getChildren().addAll(scheduleMovieButton, exploreTheaterButton);
 
         HBox h3 = new HBox();
         h3.setAlignment(Pos.CENTER);
+        h3.setSpacing(10);
         Button viewHistoryButton = new Button("View History");
         Button visitHistoryButton = new Button("Visit History");
         h3.getChildren().addAll(viewHistoryButton, visitHistoryButton);
@@ -192,7 +218,7 @@ public class Functionality {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 
@@ -215,6 +241,7 @@ public class Functionality {
         Text title = new Text("Customer Functionality");
 
         HBox h1 = new HBox();
+        h1.setSpacing(10);
         h1.setAlignment(Pos.CENTER);
         Button exploreMovieButton = new Button("Explore Movie");
         Button viewHistoryButton = new Button("View History");
@@ -222,6 +249,7 @@ public class Functionality {
 
         HBox h2 = new HBox();
         h2.setAlignment(Pos.CENTER);
+        h2.setSpacing(10);
         Button exploreTheaterButton = new Button("Explore Theater");
         Button visitHistoryButton = new Button("Visit History");
         h2.getChildren().addAll(exploreTheaterButton, visitHistoryButton);
@@ -232,7 +260,7 @@ public class Functionality {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 
@@ -264,7 +292,7 @@ public class Functionality {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MovieApplication.loginScreen(stage);
+                MovieApplication.pastStage.pop().activate(stage);
             }
         });
 
