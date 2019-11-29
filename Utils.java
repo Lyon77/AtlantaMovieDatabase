@@ -498,7 +498,7 @@ public class Utils {
         Text nameText = new Text("Movie Name");
         TextField name = new TextField(); // change to drop down
         Text companyText = new Text("Company Name");
-        TextField company = new TextField();
+        TextField company = new TextField(); // change to drop down
         h1.getChildren().addAll(nameText, name, companyText, company);
 
         HBox h2 = new HBox();
@@ -556,6 +556,176 @@ public class Utils {
 
         //Finalize the stage
         root.getChildren().addAll(title, h1, h2, h3, filterButton, tableView, h4);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void viewHistory(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and buttons
+        Text title = new Text("View History");
+
+        //Create Table
+        TableView tableView = new TableView();
+
+        TableColumn<String, Data> column1 = new TableColumn<>("First Name");
+        column1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        TableColumn<String, Data> column2 = new TableColumn<>("Last Name");
+        column2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+
+        tableView.getItems().add(new Data("John", "Doe"));
+        tableView.getItems().add(new Data("Jane", "Deer"));
+
+        Button backButton = new Button("Back");
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.pop().activate(stage);
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, tableView, backButton);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void exploreTheater(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and buttons
+        Text title = new Text("Explore Theater");
+
+        HBox h1 = new HBox();
+        h1.setAlignment(Pos.CENTER);
+        h1.setSpacing(10);
+        Text theaterText = new Text("Theater Name");
+        TextField theater = new TextField(); // change to drop down
+        Text companyText = new Text("Company Name");
+        TextField company = new TextField(); // change to drop down
+        h1.getChildren().addAll(theaterText, theater, companyText, company);
+
+        HBox h2 = new HBox();
+        h2.setAlignment(Pos.CENTER);
+        h2.setSpacing(10);
+        Text cityText = new Text("City");
+        TextField city = new TextField();
+        Text stateText = new Text("State");
+        TextField state = new TextField(); // change to drop down
+        h2.getChildren().addAll(cityText, city, stateText, state);
+
+        Button filterButton = new Button("Filter");
+
+
+        //Create Table
+        TableView tableView = new TableView();
+
+        TableColumn<String, Data> column1 = new TableColumn<>("First Name");
+        column1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        TableColumn<String, Data> column2 = new TableColumn<>("Last Name");
+        column2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+
+        tableView.getItems().add(new Data("John", "Doe"));
+        tableView.getItems().add(new Data("Jane", "Deer"));
+
+        HBox h3 = new HBox();
+        h3.setAlignment(Pos.CENTER);
+        h3.setSpacing(10);
+        Button backButton = new Button("Back");
+        Text cardText = new Text("Visit Date");
+        TextField card = new TextField(); // change to drop down
+        Button logButton = new Button("Log Visit");
+        h3.getChildren().addAll(backButton, cardText, card, logButton);
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.pop().activate(stage);
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, h1, h2, filterButton, tableView, h3);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void visitHistory(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and buttons
+        Text title = new Text("VIsit History");
+
+        HBox h1 = new HBox();
+        h1.setAlignment(Pos.CENTER);
+        h1.setSpacing(10);
+        Text companyText = new Text("Company Name");
+        TextField comapny = new TextField(); // change to drop down
+        Text dateText = new Text("Visit Date");
+        TextField date1 = new TextField();
+        Text dashText3 = new Text("--");
+        TextField date2 = new TextField();
+        h1.getChildren().addAll(companyText, comapny, dateText, date1, dashText3, date2);
+
+        Button filterButton = new Button("Filter");
+
+        //Create Table
+        TableView tableView = new TableView();
+
+        TableColumn<String, Data> column1 = new TableColumn<>("First Name");
+        column1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        TableColumn<String, Data> column2 = new TableColumn<>("Last Name");
+        column2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+
+        tableView.getItems().add(new Data("John", "Doe"));
+        tableView.getItems().add(new Data("Jane", "Deer"));
+
+        Button backButton = new Button("Back");
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.pop().activate(stage);
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, h1, filterButton, tableView, backButton);
 
         Scene scene = new Scene(root, 360, 480);
 

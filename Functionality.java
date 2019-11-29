@@ -151,6 +151,14 @@ public class Functionality {
             }
         });
 
+        viewHistoryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::adminCustomerFunctionalityScreen);
+                Utils.viewHistory(stage);
+            }
+        });
+
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -263,6 +271,30 @@ public class Functionality {
             public void handle(ActionEvent event) {
                 MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
                 Utils.scheduleMovie(stage);
+            }
+        });
+
+        exploreTheaterButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
+                Utils.exploreTheater(stage);
+            }
+        });
+
+        viewHistoryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
+                Utils.viewHistory(stage);
+            }
+        });
+
+        visitHistoryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
+                Utils.visitHistory(stage);
             }
         });
 
