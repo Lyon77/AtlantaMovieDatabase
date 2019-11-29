@@ -52,7 +52,12 @@ public class Functionality {
         Button visitHistoryButton = new Button("Visit History");
         h2.getChildren().addAll(manageCompanyButton, visitHistoryButton);
 
+        HBox h3 = new HBox();
+        h3.setAlignment(Pos.CENTER);
+        h3.setSpacing(10);
         Button createMovieButton = new Button("Create Movie");
+        Button createTheaterButton = new Button("Create Theater");
+        h3.getChildren().addAll(createMovieButton, createTheaterButton);
 
         Button backButton = new Button("Back");
 
@@ -65,7 +70,7 @@ public class Functionality {
         });
 
         //Finalize the stage
-        root.getChildren().addAll(title, h1, h2, createMovieButton, backButton);
+        root.getChildren().addAll(title, h1, h2, h3, createMovieButton, backButton);
 
         Scene scene = new Scene(root, 360, 480);
 
@@ -103,7 +108,12 @@ public class Functionality {
         Button viewHistoryButton = new Button("View History");
         h3.getChildren().addAll(createMovieButton, viewHistoryButton);
 
+        HBox h4 = new HBox();
+        h4.setAlignment(Pos.CENTER);
+        h4.setSpacing(10);
         Button visitHistoryButton = new Button("Visit History");
+        Button createTheaterButton = new Button("Create Theater");
+        h4.getChildren().addAll(visitHistoryButton, createTheaterButton);
 
         Button backButton = new Button("Back");
 
@@ -124,6 +134,23 @@ public class Functionality {
             }
         });
 
+        createMovieButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::adminCustomerFunctionalityScreen);
+                Utils.createMovie(stage);
+            }
+        });
+
+
+        createTheaterButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::adminCustomerFunctionalityScreen);
+                Utils.createTheater(stage);
+            }
+        });
+
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -132,7 +159,7 @@ public class Functionality {
         });
 
         //Finalize the stage
-        root.getChildren().addAll(title, h1, h2, h3, visitHistoryButton, backButton);
+        root.getChildren().addAll(title, h1, h2, h3, h4, visitHistoryButton, backButton);
 
         Scene scene = new Scene(root, 360, 480);
 
@@ -215,6 +242,30 @@ public class Functionality {
         Button backButton = new Button("Back");
 
         //Set on Click actions
+        theaterOverviewButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
+                Utils.theaterOverview(stage);
+            }
+        });
+
+        exploreMovieButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
+                Utils.exploreMovie(stage);
+            }
+        });
+
+        scheduleMovieButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.push(Functionality::managerCustomerFunctionalityScreen);
+                Utils.scheduleMovie(stage);
+            }
+        });
+
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

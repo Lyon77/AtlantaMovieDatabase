@@ -96,7 +96,7 @@ public class MovieApplication extends Application {
 
                 pastStage.push(MovieApplication::loginScreen);
                 // Choose Functionality based on user type in SQL Database
-                Functionality.adminCustomerFunctionalityScreen(stage);
+                Functionality.managerCustomerFunctionalityScreen(stage);
             }
         });
 
