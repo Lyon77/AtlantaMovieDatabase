@@ -310,7 +310,8 @@ SELECT movieplay.movName, theater.thName, thStreet, thCity, thState, thZipcode, 
         (movieplay.comName = i_comName OR i_comName = "ALL") AND
         (thCity = i_city OR i_city = "") AND
         (thState = i_state OR i_state = "ALL" OR i_state = "") AND
-        ((movieplay.movPlayDate >= i_minMovPlayDate OR i_minMovPlayDate IS NULL) AND (movieplay.movPlayDate <= i_maxMovPlayDate OR i_maxMovPlayDate IS NULL));
+        ((movieplay.movPlayDate >= i_minMovPlayDate OR i_minMovPlayDate IS NULL) AND (movieplay.movPlayDate <= i_maxMovPlayDate OR i_maxMovPlayDate IS NULL)) AND
+        (movieplay.movReleaseDate <= movieplay.movPlayDate);
 END$$
 DELIMITER ;
 
