@@ -34,23 +34,7 @@ public class MovieApplication extends Application {
     public static Stack<ComplexInterface> pastStage = new Stack();
 
     public static void main (String[] args) {
-        try {
-            // REMEMBER to fill out the Info file and bring it outisde the template folder
-
-            // Step 1: "Load" the JDBC driver
-            // Class.forName(Info.JDBCDriver);
-
-            // // Step 2: Establish the connection to the database
-            // String url = Info.url;
-            // Connection conn = DriverManager.getConnection(url, Info.username, Info.password);
-
-        } catch (Exception e) {
-            System.err.println("D'oh! Got an exception!");
-            System.err.println(e.getMessage());
-
-            return;
-        }
-
+		DatabaseManager.getInstance();
         launch(args);
     }
 
@@ -92,11 +76,44 @@ public class MovieApplication extends Application {
         loginButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(username.getText() + " " + password.getText());
-
-                pastStage.push(MovieApplication::loginScreen);
-                // Choose Functionality based on user type in SQL Database
-                Functionality.managerCustomerFunctionalityScreen(stage);
+				//System.out.println(username.getText() + " " + password.getText());	
+				try {
+					ResultSet login = DatabaseManager.getInstance().screen1Login(username.getText(), password.getText());
+					if (login.next()) {
+						if (login.getString(2).equals("Approved")) {
+							System.out.println(login.getString(1) + "has logged in.");
+							pastStage.push(MovieApplication::loginScreen);
+							
+							boolean isCustomer = login.getBoolean(3);
+							boolean isAdmin = login.getBoolean(4);
+							boolean isManager = login.getBoolean(5);
+							
+							if (isCustomer) {
+								if (isAdmin) {
+									Functionality.adminCustomerFunctionalityScreen(stage);
+								} else if (isManager) {
+									Functionality.managerCustomerFunctionalityScreen(stage);
+								} else {
+									Functionality.customerFunctionalityScreen(stage);
+								}
+							} else {
+								if (isAdmin) {
+									Functionality.adminFunctionalityScreen(stage);
+								} else if (isManager) {
+									Functionality.managerFunctionalityScreen(stage);
+								} else {
+									Functionality.userFunctionalityScreen(stage);
+								}
+							}
+						} else {
+							System.out.println(username.getText() + " hasn't been approved.");
+						}
+					} else {
+						System.out.println("Invalid username or password.");
+					}
+				} catch (Exception e) {
+					System.out.println(e);
+				}
             }
         });
 
