@@ -10,8 +10,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 
 import javafx.scene.Scene;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TextField;
@@ -33,6 +35,12 @@ import javafx.geometry.Pos;
 import java.util.Optional;
 
 public class Utils {
+	public static void showAlert(String alertText) {
+		Alert alert = new Alert(AlertType.INFORMATION,
+								alertText, ButtonType.CLOSE);
+		alert.showAndWait();
+	}
+	
     public static void showInputTextDialog(String title, String header) {
         TextInputDialog dialog = new TextInputDialog(title);
 

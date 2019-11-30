@@ -30,4 +30,13 @@ public class DatabaseManager {
 			throw e;
 		}
 	}
+	
+	public void screen3UserOnlyRegister(String firstName, String lastName, String username, String password) throws Exception {
+		try {
+			Statement stmt = con.createStatement();
+			stmt.execute("CALL user_register('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "');");
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 }

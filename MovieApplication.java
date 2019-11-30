@@ -33,6 +33,8 @@ public class MovieApplication extends Application {
 
     public static Stack<ComplexInterface> pastStage = new Stack();
 
+	public static String loggedInUser;
+
     public static void main (String[] args) {
 		DatabaseManager.getInstance();
         launch(args);
@@ -81,7 +83,8 @@ public class MovieApplication extends Application {
 					ResultSet login = DatabaseManager.getInstance().screen1Login(username.getText(), password.getText());
 					if (login.next()) {
 						if (login.getString(2).equals("Approved")) {
-							System.out.println(login.getString(1) + "has logged in.");
+							loggedInUser = login.getString(1);
+							System.out.println(loggedInUser + " has logged in.");
 							pastStage.push(MovieApplication::loginScreen);
 							
 							boolean isCustomer = login.getBoolean(3);
@@ -106,12 +109,13 @@ public class MovieApplication extends Application {
 								}
 							}
 						} else {
-							System.out.println(username.getText() + " hasn't been approved.");
+							Utils.showAlert(username.getText() + " hasn't been approved.");
 						}
 					} else {
-						System.out.println("Invalid username or password.");
+						Utils.showAlert("Invalid username or password.");
 					}
 				} catch (Exception e) {
+					Utils.showAlert(e.getMessage());
 					System.out.println(e);
 				}
             }

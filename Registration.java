@@ -48,7 +48,8 @@ public class Registration {
         userButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Utils.showInputTextDialog("Name", "Input Name:");
+				MovieApplication.pastStage.push(Registration::registerNavigation);
+                Registration.userOnlyRegister(stage);
             }
         });
 
@@ -61,6 +62,87 @@ public class Registration {
 
         // Finialize Stage
         root.getChildren().addAll(title, userButton, customerButton, managerButton, managerCustomerButton, backButton);
+
+        Scene scene = new Scene(root, 360, 480);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+	
+	public static void userOnlyRegister(Stage stage) {
+        VBox root = new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        root.setAlignment(Pos.CENTER);
+
+        //Define the layout of the text fields and buttons
+        Text title = new Text("User Registration");
+
+        HBox h1 = new HBox();
+        h1.setAlignment(Pos.CENTER_LEFT);
+        h1.setSpacing(10);
+        Text firstNameText = new Text("First Name");
+        TextField firstName = new TextField();
+        Text lastNameText = new Text("Last Name");
+        TextField lastName = new TextField();
+        h1.getChildren().addAll(firstNameText, firstName, lastNameText, lastName);
+
+        HBox h2 = new HBox();
+        h2.setAlignment(Pos.CENTER_LEFT);
+        h2.setSpacing(10);
+		Text usernameText = new Text("Username");
+        TextField username = new TextField();
+        h2.getChildren().addAll(usernameText, username);
+
+        HBox h3 = new HBox();
+        h3.setAlignment(Pos.CENTER_LEFT);
+        h3.setSpacing(10);
+		Text passwordText = new Text("Password");
+        TextField password = new TextField();
+		Text confirmPasswordText = new Text("Confirm Password");
+        TextField confirmPassword = new TextField();
+        h3.getChildren().addAll(passwordText, password, confirmPasswordText, confirmPassword);
+
+        HBox h4 = new HBox();
+        h3.setAlignment(Pos.CENTER_LEFT);
+        h3.setSpacing(10);
+		Button backButton = new Button("Back");
+		Button registerButton = new Button("Register");
+        h4.getChildren().addAll(backButton, registerButton);
+
+        //Set on Click actions
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MovieApplication.pastStage.pop().activate(stage);
+            }
+        });
+		
+        registerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+				try {
+					if (password.getText().length() >= 8) {
+						if (password.getText().equals(confirmPassword.getText())) {
+							DatabaseManager.getInstance().screen3UserOnlyRegister(firstName.getText(), lastName.getText(),
+																				username.getText(), password.getText());
+							Utils.showAlert("Registration successful.");
+							MovieApplication.pastStage.pop().activate(stage);
+						} else {
+							Utils.showAlert("Password and Confirm Password must match.");
+						}
+					} else {
+						Utils.showAlert("Password must be at least 8 characters.");
+					}
+				} catch (Exception e) {
+					Utils.showAlert(e.getMessage());
+					System.out.println(e);
+				}
+            }
+        });
+
+        //Finalize the stage
+        root.getChildren().addAll(title, h1, h2, h3, h4);
 
         Scene scene = new Scene(root, 360, 480);
 
