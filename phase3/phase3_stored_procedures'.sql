@@ -319,7 +319,15 @@ DROP PROCEDURE IF EXISTS customer_view_mov;
 DELIMITER $$
 CREATE PROCEDURE `customer_view_mov`(IN i_creditCardNum CHAR(16), IN i_movName VARCHAR(50), IN i_movReleaseDate DATE,
 IN i_thName VARCHAR(25), IN i_comName VARCHAR(50), IN i_movPlayDate DATE)
-BEGIN
+this_procedure: BEGIN
+DECLARE seenToday INT DEFAULT 0;
+-- DECLARE TOO_MANY_VIEWS CONDITION FOR SQLSTATE '45000';
+SELECT count(movPlayDate) INTO seenToday FROM customerviewmovie WHERE movPlayDate = i_movPlayDate;
+IF seenToday = 3 THEN
+	-- SIGNAL TOO_MANY_VIEWS
+    -- SET MESSAGE_TEXT = 'Customer has seen 3 movies today.';
+    LEAVE this_procedure;
+END IF; 
 INSERT INTO customerviewmovie (creditCardNum, thName, comName, movName, movReleaseDate, movPlayDate) VALUES
 (i_creditCardNum, i_thName, i_comName, i_movName, i_movReleaseDate, i_movPlayDate);
 END$$

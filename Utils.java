@@ -770,4 +770,29 @@ public class Utils {
             this.lastName = lastName;
         }
     }
+	
+	public static class CreditCardData {
+        private String creditCardNum = null;
+
+        public CreditCardData() {
+        }
+
+        public CreditCardData(String creditCardNum) {
+            this.creditCardNum = creditCardNum;
+        }
+
+        public String getCreditCardNum() {
+            return creditCardNum;
+        }
+
+        public void setCreditCardNum(String creditCardNum) {
+            this.creditCardNum = creditCardNum;
+        }
+		
+		@Override
+		public boolean equals (Object obj) {
+			if (obj == null)
+				
+		}
+    }
 }
