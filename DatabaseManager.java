@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.*;
 
 public class DatabaseManager {
 	private static final DatabaseManager instance = new DatabaseManager();
@@ -56,6 +57,42 @@ public class DatabaseManager {
 		try {
 			Statement stmt = con.createStatement();
 			stmt.execute("CALL customer_add_creditcard('" + username + "', '" + creditCardNum + "');");
+			stmt.close();
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public void screen5ManagerOnlyRegister(String firstName, String lastName, String username, String password, String company, String street, String city, String state, String zipcode) throws Exception {
+		try {
+			Statement stmt = con.createStatement();
+			stmt.execute("CALL manager_only_register('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + company + "', '" + street + "', '" + city + "', '" + state + "', '" + zipcode + "');");
+			stmt.close();
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public List<String> getCompanyList() throws Exception {
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery ("SELECT * FROM team59.company;");
+			List<String> companyList = new ArrayList<String>();
+			while (rs.next()) {
+				companyList.add(rs.getString(1));
+			}
+			rs.close();
+			stmt.close();
+			return companyList;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public void screen6ManagerCustomerRegister(String firstName, String lastName, String username, String password, String company, String street, String city, String state, String zipcode) throws Exception {
+		try {
+			Statement stmt = con.createStatement();
+			stmt.execute("CALL manager_customer_register('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + company + "', '" + street + "', '" + city + "', '" + state + "', '" + zipcode + "');");
 			stmt.close();
 		} catch (Exception e) {
 			throw e;
