@@ -230,8 +230,9 @@ public class Registration {
             public void handle(ActionEvent event) {
 				if (cardEntryField.getText().length() == 16) {
 					if (cardEntryField.getText().matches("[0-9]+")) {
-						if (!tableView.getItems().contains(cardEntryField.getText())) {
-							tableView.getItems().add(new Utils.CreditCardData(cardEntryField.getText()));
+						Utils.CreditCardData creditCard = new Utils.CreditCardData(cardEntryField.getText());
+						if (!tableView.getItems().contains(creditCard)) {
+							tableView.getItems().add(creditCard);
 							if (tableView.getItems().size() == 5) {
 								addCardButton.setDisable(true);
 							}
@@ -250,7 +251,9 @@ public class Registration {
 		removeCardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-				
+				Utils.CreditCardData selectedCard = (Utils.CreditCardData)tableView.getSelectionModel().getSelectedItem();
+				tableView.getItems().remove(selectedCard);
+				addCardButton.setDisable(false);
             }
         });
 		
@@ -267,10 +270,17 @@ public class Registration {
 				try {
 					if (password.getText().length() >= 8) {
 						if (password.getText().equals(confirmPassword.getText())) {
-							DatabaseManager.getInstance().screen3UserOnlyRegister(firstName.getText(), lastName.getText(),
-																				username.getText(), password.getText());
-							Utils.showAlert("Registration successful.");
-							MovieApplication.pastStage.pop().activate(stage);
+							if (tableView.getItems().size() >= 1) {
+								DatabaseManager.getInstance().screen4CustomerOnlyRegister(firstName.getText(), lastName.getText(),
+																					username.getText(), password.getText());
+								for (Object card : tableView.getItems()) {
+									DatabaseManager.getInstance().customerAddCreditCard(username.getText(), ((Utils.CreditCardData)card).getCreditCardNum());
+								}
+								Utils.showAlert("Registration successful.");
+								MovieApplication.pastStage.pop().activate(stage);
+							} else {
+								Utils.showAlert("You must enter at least 1 credit card.");
+							}
 						} else {
 							Utils.showAlert("Password and Confirm Password must match.");
 						}

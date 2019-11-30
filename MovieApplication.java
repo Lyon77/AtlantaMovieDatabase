@@ -91,6 +91,8 @@ public class MovieApplication extends Application {
 							boolean isAdmin = login.getBoolean(4);
 							boolean isManager = login.getBoolean(5);
 							
+							login.close();
+							
 							if (isCustomer) {
 								if (isAdmin) {
 									Functionality.adminCustomerFunctionalityScreen(stage);

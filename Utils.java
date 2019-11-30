@@ -792,7 +792,12 @@ public class Utils {
 		@Override
 		public boolean equals (Object obj) {
 			if (obj == null)
-				
+				return false;
+			if (!(obj instanceof CreditCardData))
+				return false;
+			CreditCardData other = (CreditCardData)obj;
+			
+			return creditCardNum.equals(other.getCreditCardNum());
 		}
     }
 }
