@@ -276,11 +276,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_add_creditcard`(IN i_usern
 BEGIN
 INSERT INTO customercreditcard (username, creditCardNum)
 select i_username, i_creditCardNum
-where CHAR_LENGTH(i_creditCardNum) = 16 and i_username in
+where CHAR_LENGTH(i_creditCardNum) = 16 and i_username not in
 (select username
 from customercreditcard
 group by username
-having count(*)<5);
+having count(*) = 5);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
