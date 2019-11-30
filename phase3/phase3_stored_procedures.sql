@@ -121,12 +121,6 @@ END IF;
 IF NOT i_sortDirection IN ('ASC', 'DESC') THEN
 	SET i_sortDirection = 'DESC';
 END IF;
-SET i_minCity = IFNULL(i_minCity, 0);
-SET i_maxCity = IFNULL(i_maxCity, 99999999);
-SET i_minTheater = IFNULL(i_minTheater, 0);
-SET i_maxTheater = IFNULL(i_maxTheater, 99999999);
-SET i_minEmployee = IFNULL(i_minEmployee, 0);
-SET i_maxEmployee = IFNULL(i_maxEmployee, 99999999);
     DROP TABLE IF EXISTS AdFilterCom;
     CREATE TABLE AdFilterCom
 
@@ -137,9 +131,9 @@ SELECT theater.comName,
 FROM theater JOIN manager ON manager.comName = theater.comName
 WHERE (theater.comName = i_comName OR i_comName = "ALL" OR i_comName = "")
 GROUP BY theater.comName
-HAVING (numCityCover >= i_minCity AND numCityCover <= i_maxCity) AND
-	(numTheater >= i_minTheater AND numTheater <= i_maxTheater) AND
-    (numEmployee >= i_minEmployee AND numEmployee <= i_maxEmployee)
+HAVING ((numCityCover >= i_minCity OR i_minCity IS NULL) AND (numCityCover <= i_maxCity OR i_maxCity IS NULL)) AND
+	((numTheater >= i_minTheater OR i_minTheater IS NULL) AND (numTheater <= i_maxTheater OR i_maxTheater IS NULL)) AND
+    ((numEmployee >= i_minEmployee OR i_minEmployee IS NULL) AND (numEmployee <= i_maxEmployee OR i_maxEmployee IS NULL))
 ORDER BY
 	CASE WHEN i_sortBy = 'comName' AND i_sortDirection = 'DESC' THEN theater.comName END DESC,
     CASE WHEN i_sortBy = 'comName' THEN theater.comName END,
